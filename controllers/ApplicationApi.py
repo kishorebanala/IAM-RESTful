@@ -6,7 +6,7 @@ import json
 
 @app.route('/applications/', methods=['GET'])
 def getallapplications():
-    applications = Applications.Application.query().all()
+    applications = Applications.Application.query.all()
     print(type(applications))
     appList = []
     for application in applications:
