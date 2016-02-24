@@ -1,3 +1,3 @@
-web: gunicorn iam-restful.wsgi --log-file -restlogs.log
+web: gunicorn dbconfig:app
 
 heroku ps:scale web=1
