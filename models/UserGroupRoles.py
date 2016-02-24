@@ -1,12 +1,12 @@
 from dbconfig import db
 
 
-class UserApplicationRoles(db.Model):
+class UserGroupRoles(db.Model):
     __tablename__ = 'usergrouproles'
 
-    userID = db.Column(db.INTEGER)
-    groupID = db.Column(db.INTEGER)
-    role = db.Column(db.INTEGER(4))
+    userID = db.Column(db.INTEGER, db.ForeignKey('users.id'), primary_key=True)
+    groupID = db.Column(db.INTEGER, db.ForeignKey('groups.id'), primary_key=True)
+    role = db.Column(db.INTEGER)
 
     def __init__(self, userID, groupID, role):
         self.userId = userID
@@ -14,4 +14,4 @@ class UserApplicationRoles(db.Model):
         self.role = role
 
     def __repr__(self):
-        return UserApplicationRoles
+        return UserGroupRoles
