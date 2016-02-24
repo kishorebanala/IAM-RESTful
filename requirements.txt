@@ -1,3 +1,4 @@
+mysql-connector-python==1.1.6
 aniso8601==1.1.0
 Django==1.9.2
 Flask==0.10.1
@@ -7,8 +8,6 @@ gunicorn==19.4.5
 itsdangerous==0.24
 Jinja2==2.8
 MarkupSafe==0.23
---allow-external mysql-connector-python
-mysql-connector-python==2.1.3
 python-dateutil==2.4.2
 pytz==2015.7
 six==1.10.0
