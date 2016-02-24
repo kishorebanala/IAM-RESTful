@@ -1,4 +1,4 @@
-mysql-connector-python==1.1.6
+mysql-connector-python==1.2.3
 aniso8601==1.1.0
 Django==1.9.2
 Flask==0.10.1
