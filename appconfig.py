@@ -1,6 +1,7 @@
 from flask import Flask
 from controllers import UserApi, ApplicationApi, ApplicationGroupsApi, UserRolesAppsApi, UserRolesGroupsApi
 from flask_sqlalchemy import SQLAlchemy
+from flask import render_template
 
 # Initiate Flask App
 app = Flask(__name__)
@@ -16,9 +17,11 @@ app.config['SQLALCHEMY_DATABASE_URI'] = serverConfig
 
 db = SQLAlchemy(app)
 
-# TODO add root index
-# TODO populate db test values
-# TODO write user join queries.
+
+# Root index
+@app.route('/')
+def root():
+    return render_template('root.html')
 
 # Add Blueprints
 app.register_blueprint(UserApi.user_api)
@@ -30,4 +33,3 @@ app.register_blueprint(UserRolesGroupsApi.userrolesgroup_api)
 # Debug locally
 if __name__ == '__main__':
     app.run(debug=True)
-
