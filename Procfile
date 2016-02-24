@@ -1,3 +1,3 @@
-web: gunicorn dbconfig:app
+web: gunicorn appconfig:app
 
 heroku ps:scale web=1

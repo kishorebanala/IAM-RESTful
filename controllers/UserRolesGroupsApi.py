@@ -46,7 +46,7 @@ def getusersingroup(groupid):
                     'INNER JOIN users '
                     'INNER JOIN groups '
                     'ON (usergrouproles.userID = users.id AND usergrouproles.groupID = groups.id) '
-                    'WHERE groups.id = 2;')
+                    'WHERE groups.id = x')
     grpquery = grpquery.bindparams(x=str(groupid))
     userroles = db.engine.execute(grpquery)
 
