@@ -1,0 +1,1 @@
+web: gunicorn iam-restful.wsgi --log-file
