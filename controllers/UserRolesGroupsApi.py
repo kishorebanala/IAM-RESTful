@@ -18,13 +18,13 @@ logger = logging.getLogger("UserRolesGroupAPI")
 @userrolesgroup_api.route('/userid=<int:userid>', methods=['GET'])
 def getgrouprolesforuser(userid):
     logger.info("GET all applications in Group ID: ", userid)
-    sqlquery = text('SELECT users.name, groups.name, usergrouproles.role FROM usergrouproles'
-                    'INNER JOIN users '
-                    'INNER JOIN groups '
-                    'ON (usergrouproles.userID = users.id AND usergrouproles.groupID = groups.id) '
-                    'WHERE users.id = x')
-    sqlquery = sqlquery.bindparams(x=str(userid))
-    usergrproles = db.engine.execute(sqlquery)
+    grpsbyuserquery = text('SELECT users.name, groups.name, usergrouproles.role FROM usergrouproles'
+                           'INNER JOIN users '
+                           'INNER JOIN groups '
+                           'ON (usergrouproles.userID = users.id AND usergrouproles.groupID = groups.id) '
+                           'WHERE users.id = :x')
+    grpsbyuserquery = grpsbyuserquery.bindparams(x=str(userid))
+    usergrproles = db.engine.execute(grpsbyuserquery)
 
     usergrprolesdict = {'userID': userid}
     usergrprolesList = []
@@ -46,7 +46,7 @@ def getusersingroup(groupid):
                     'INNER JOIN users '
                     'INNER JOIN groups '
                     'ON (usergrouproles.userID = users.id AND usergrouproles.groupID = groups.id) '
-                    'WHERE groups.id = x')
+                    'WHERE groups.id = :x')
     grpquery = grpquery.bindparams(x=str(groupid))
     userroles = db.engine.execute(grpquery)
 

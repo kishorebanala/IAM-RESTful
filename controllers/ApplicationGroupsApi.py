@@ -32,13 +32,13 @@ def getallappgroups():
 @appgroups_api.route('/groupid=<int:groupid>', methods=['GET'])
 def getapplicationsbygroup(groupid):
     logger.info("GET all applications in Group ID: ", groupid)
-    sqlquery = text('SELECT groups.name, applications.name FROM appgroups '
+    appsbygroupquery = text('SELECT groups.name, applications.name FROM appgroups '
                     'INNER JOIN applications '
                     'INNER JOIN groups '
                     'ON (appgroups.applicationID = applications.id AND appgroups.groupID = groups.id) '
                     'WHERE groups.id = :x')
-    sqlquery = sqlquery.bindparams(x=str(groupid))
-    appgroups = db.engine.execute(sqlquery)
+    appsbygroupquery = appsbygroupquery.bindparams(x=str(groupid))
+    appgroups = db.engine.execute(appsbygroupquery)
     """
     Alternative way to do this:
     application = Applications.Application
