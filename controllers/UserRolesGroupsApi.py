@@ -18,7 +18,7 @@ logger = logging.getLogger("UserRolesGroupAPI")
 @userrolesgroup_api.route('/userid=<int:userid>', methods=['GET'])
 def getgrouprolesforuser(userid):
     logger.info("GET all applications in Group ID: ", userid)
-    grpsbyuserquery = text('SELECT users.name, groups.name, usergrouproles.role FROM usergrouproles'
+    grpsbyuserquery = text('SELECT users.name, groups.name, usergrouproles.role FROM usergrouproles '
                            'INNER JOIN users '
                            'INNER JOIN groups '
                            'ON (usergrouproles.userID = users.id AND usergrouproles.groupID = groups.id) '

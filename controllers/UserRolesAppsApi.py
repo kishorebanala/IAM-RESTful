@@ -19,10 +19,10 @@ logger = logging.getLogger("UserRolesAppAPI")
 def getapprolesforuser(userid):
     logger.info("GET all applications in Group ID: ", userid)
     appsbyuserquery = text('SELECT applications.name, userapproles.role '
-                           'FROM userapproles'
-                           'INNER JOIN users'
-                           'INNER JOIN applications'
-                           'ON (userapproles.userID = users.id AND userapproles.appID = applications.id)'
+                           'FROM userapproles '
+                           'INNER JOIN users '
+                           'INNER JOIN applications '
+                           'ON (userapproles.userID = users.id AND userapproles.appID = applications.id) '
                            'WHERE users.id = :x')
     appsbyuserquery = appsbyuserquery.bindparams(x=str(userid))
     userapproles = db.engine.execute(appsbyuserquery)
